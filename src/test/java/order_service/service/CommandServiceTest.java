@@ -27,7 +27,7 @@ public class CommandServiceTest {
 
     @Test
     void shouldCreateAndStoreCommand() {
-        Command command = service.addCommand();
+        Command command = service.createCommand();
         assertNotNull(command);
         verify(repository).addCommand(command);
     }
