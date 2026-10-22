@@ -22,7 +22,7 @@ public class CommandServiceTest {
     @BeforeEach
     void setUp() {
         repository = mock(CommandRepository.class);
-        service = new CommandService(repository);
+        service = new CommandService(repository, null);
     }
 
     @Test

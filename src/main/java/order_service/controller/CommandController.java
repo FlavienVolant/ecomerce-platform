@@ -8,9 +8,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import order_service.controller.dto.CommandItemsRequest;
 import order_service.domain.Command;
 import order_service.service.CommandService;
 
@@ -43,5 +45,14 @@ public class CommandController {
         if(c == null)
             return new ResponseEntity<>(HttpStatusCode.valueOf(404));
         return new ResponseEntity<>(c, HttpStatusCode.valueOf(200));
+    }
+
+    @PostMapping("/{id}/items")
+    public ResponseEntity<Void> addItems(@PathVariable UUID id, @RequestBody List<CommandItemsRequest> items) {
+
+        if (!service.addItems(id, items))
+            return ResponseEntity.badRequest().build();
+
+        return ResponseEntity.noContent().build();
     }
 }
