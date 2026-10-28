@@ -2,6 +2,14 @@
 
 ## How to
 
+Docker
+```
+docker compose up -d
+docker compose exec -T database psql -U ecommerce -d ecommerce < src\main\resources\db\schema.sql
+docker compose exec database psql -U ecommerce -d ecommerce
+```
+
+
 Unix
 ```
 ./mvnw test
